@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div id="slide1">
+        <h1>Childhood Lead Exposure by Census Tracts in Minnesota</h1>
+        <p class="main">MUSA 692 Midterm Project</p>
+        <p class="main">Xiao Wu    03/23/2018</p>
+        <p class="main">Preventing early-life exposure to lead is important for life-long health. Elevated blood lead levels (EBLLs) in young children are linked with adverse health effects, including learning problems, behavioral problems, and even death if exposures are very high. Children less than 6 years of age living in homes built before 1978 are most at risk for lead exposure. Younger children are at greater risk because their bodies absorb lead more easily and their brains are still developing.</p>
+        <p></p>
+        <p> Click Next button to show all the census tracts in Minnesota </p>
+        <p> Click any census tract to show EBLL level </p>
+      </div>
+
+      <div id="results" style="display: none;">
+        <h1 class="tract">Tract Level</h1>
+        <p class="main">The tract has EBLLs of <span class="tract">
+        </span>.</p>
+      </div>
+
+      <div id="slide2">
+        <h1>General Childhood Lead Exposure Map in Minnesota</h1>
+        <p class="main">The EBLL in Minnesota is showed in the map.</p>
+        <p>We can see the Hennepin County have several areas with clustered children's blood lead level. </p>
+      </div>
+
+      <div id="slide3">
+        <h1>Significantly Higher Childhood Lead Exposure in Minnesota</h1>
+        <p class="main">The significantly higher EBLL in Minnesota is showed in the map.</p>
+        <p>We can see the Hennepin County have several areas with clustered children's blood lead level. </p>
+      </div>
+
+      <div id="slide4">
+        <h1>Higher Childhood Lead Exposure in Minnesota</h1>
+        <p class="main">The higher EBLL in Minnesota is showed in the map.</p>
+        <p>We can see the Hennepin County have several areas with clustered children's blood lead level. </p>
+      </div>
+
+      <div id="slide5">
+        <h1>Lower Childhood Lead Exposure in Minnesota</h1>
+        <p class="main">The lower EBLL in Minnesota is showed in the map.</p>
+        <p>We can see the Hennepin County have several areas with clustered children's blood lead level. </p>
+      </div>
+
+      <div class='button'>
+        <input type="button" id="buttonPre" value="Previous"></input>
+        <input type="button" id="buttonNext" value="Next"></input>
+      </div>
+
+    </div>
+    <!-- Map -->
+    <div id="map" class="map"></div>
+    <!-- Legend -->
+    <div class="legend">
+      <h1> Legend </h1>
+      <table>
+        <tr>
+          <td><div id="SigHigher"></div></td>
+          <td id="level">Significantly higher (3+ times)</td>
+        </tr>
+        <tr>
+          <td><div id="Higher"></div></td>
+          <td id="level">Significantly higher (1-2 times)</td>
+        </tr>
+        <tr>
+          <td><div id="NoDiff"></div></td>
+          <td id="level">No significant difference</td>
+        </tr>
+        <tr>
+          <td><div id="SigLower"></div></td>
+          <td id="level"> Significantly lower (<1.1%) </td>
+        </tr>
+        </table>
+    </div>
+    <!-- Javascript Imports -->
+    <script src="jquery-2.2.0.js"></script>
+    <script src="underscore.js"></script>
+    <script src="leaflet.js"></script>
+    <script src="midtermFunctions.js"></script>
+    <script src="slideModel.js"></script>
+  </body>
+</html>
