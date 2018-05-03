@@ -5,65 +5,51 @@
     <meta charset="utf-8">
     <!-- CSS Imports -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- topbar -->
-    <div id="thintop" hidden="hidden">
-      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:20px" id="menuDown"></span>
-    </div>
     <div class="topbar" id="top" style="vertical-align:middle">
       <ul class="nav nav-pills">
         <li role="presentation" id="menuUp"><a href="#">
           <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="font-size:20px"></span>
           </a></li>
+        <!-- <li role="presentation" id="menudown" hidden = "hidden"><a href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="false" style="font-size:20px"></span>
+          </a></li> -->
         <li role="presentation" id="mapping" style="margin-left:12px"><a href="#">
           <span class="glyphicon glyphicon-globe" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
         <li role="presentation" id="firstButton" style="margin-left:12px"><a href="#">
           <span class="glyphicon glyphicon-signal" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="thirdButton" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="secondButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-filter" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="fourthButton" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="thirdButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="title" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="fourthButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <!-- <li role="presentation">
-          <div class="form-group">
-           <input type="text" class="form-control" placeholder="Explore your location" id="destination" hidden="hidden">
-         </div>
-       </li> -->
-       <!-- <li role="presentation">
-         <button type="submit" class="btn btn-default" id="explore" hidden="hidden">Search</button>
-       </li>
-       <li role="presentation">
-         <button type="submit" class="btn btn-default" id="clear" hidden="hidden">Clear</button>
-       </li> -->
+       </div>
+       <div class="topbar" id="Title" style="margin-left:380px">
+         <p>Predicting Household Lead Probabilities in Minneapolis</p>
        </div>
       </ul>
 
     </div>
 
     <!-- default Bar -->
-    <div class="originalBar">
+    <div class="originalBar" id="originalBar">
       <p>Lead exposure possibilities</p>
       <p>This map displays the probabilities of each parcel possibilities of having lead</p>
-      <p>Click around the parcel points to see the probabilities of lead exposure </p>
-      <div>
-        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="font-size:30px"></span>
-        <p>Now click on the buttons at the top or click on the dots in the map to
-        explore more about lead exposure
-        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" style="font-size:30px"></span>
-        </p>
-      </div>
+      <p>Click around the census tracts to see the probabilities of lead exposure </p>
+      <p>You can also click on the buttons at the top or the polygons on the map to explore more about lead exposure.</p>
     </div>
 
 
@@ -71,23 +57,18 @@
     <div id="map" class="map">
       <div class="legend">
         <div id="gradient1" hidden="hidden"></div>
-        <div id="gradient2" hidden="hidden"></div>
-        <div id="sizing">
-        </div>
-        <div id="textBox">
-          <input class="legendText" type="text" id="minText" disabled>
         </div>
       </div>
     </div>
 
     <!-- Javascript Imports -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="import/chroma.js"></script>
     <script src="import/underscore.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
     <script src="js/Functions.js"></script>
+    <script src="js/navigation.js"></script>
   </body>
 </html>
