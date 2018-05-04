@@ -44,9 +44,26 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   var cartoVizId = '41b34693-185d-4912-8bc8-448f3a3b7de0';
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
 
-  cartodb.createLayer(map, layerUrl)
-    .on('done', function(layer) {
-      layer.addTo(map);
-    }).on('error', function(err) {
-      console.log(err);
-    });
+  var points;
+  var districts = cartodb.createLayer(map, {
+    user_name: cartoUserName,
+    type: 'cartodb',
+    interactivity: true,
+    sublayers: [
+      {
+        type: 'mapnik',
+        sql: "SELECT * FROM pointsjson2",
+        cartocss: "#pointsjson2 { marker-width: 7; marker-fill: #EE4D5A; marker-fill-opacity: 0.9; marker-allow-overlap: true; marker-line-width: 1; marker-line-color: #FFFFFF; marker-line-opacity: 1; }",
+        interactivity: 'stpws_p' // Define properties you want to be available on interaction
+     }
+    ]
+  }).addTo(map).done(function(layer) {
+    points = layer.getSubLayer(0);
+  })
+  //cartodb.createLayer(map, layerUrl)
+  //  .on('done', function(layer) {
+  //    layer.addTo(map);
+  //  }).on('error', function(err) {
+  //    console.log(err);
+  //  });
+
