@@ -45,7 +45,7 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
 
   var points;
-  var districts = cartodb.createLayer(map, {
+  var pointsLayer = cartodb.createLayer(map, {
     user_name: cartoUserName,
     type: 'cartodb',
     interactivity: true,
@@ -57,9 +57,21 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         interactivity: 'stpws_p' // Define properties you want to be available on interaction
      }
     ]
-  }).addTo(map).done(function(layer) {
-    points = layer.getSubLayer(0);
   })
+
+  var districts;
+  var districtsLayer = cartodb.createLayer(map, layerUrl)
+
+  pointsLayer.addTo(map).done(function(layer) {
+    points = layer.getSubLayer(0);
+    layer.setZIndex(1000)
+  })
+
+  districtsLayer.addTo(map).done(function(layer) {
+    districts = layer.getSubLayer(0);
+    layer.setZIndex(0)
+  })
+
   //cartodb.createLayer(map, layerUrl)
   //  .on('done', function(layer) {
   //    layer.addTo(map);
