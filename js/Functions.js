@@ -45,10 +45,12 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
 
   var points;
-  var pointsLayer = cartodb.createLayer(map, {
+  var pointsLayer;
+  pointsCDB = cartodb.createLayer(map, {
     user_name: cartoUserName,
     type: 'cartodb',
     interactivity: true,
+    legends: true,
     sublayers: [
       {
         type: 'mapnik',
@@ -60,17 +62,29 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   })
 
   var districts;
-  var districtsLayer = cartodb.createLayer(map, layerUrl)
+  var districtsLayer;
+  var districtsCDB = cartodb.createLayer(map, layerUrl)
 
-  pointsLayer.addTo(map).done(function(layer) {
+  pointsCDB.addTo(map).done(function(layer) {
+    pointsLayer = layer;
     points = layer.getSubLayer(0);
+    console.log(layer.options.legend)
     layer.setZIndex(1000)
   })
 
-  districtsLayer.addTo(map).done(function(layer) {
+  districtsCDB.addTo(map).done(function(layer) {
+    districtsLayer = layer;
     districts = layer.getSubLayer(0);
     layer.setZIndex(0)
   })
+
+  // change points:
+  // points.setSQL('SELECT * FROM pointsjson2')
+  // points.setCartoCSS('')
+
+  // change districts:
+  // districts.setSQL('SELECT * FROM minblocksvars')
+  // points.setCartoCSS('')
 
   //cartodb.createLayer(map, layerUrl)
   //  .on('done', function(layer) {
