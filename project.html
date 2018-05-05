@@ -15,25 +15,22 @@
     <!-- topbar -->
     <div class="topbar" id="top" style="vertical-align:middle">
       <ul class="nav nav-pills">
-        <li role="presentation" id="menuUp"><a href="#">
-          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="font-size:20px"></span>
+        <li role="presentation" id="info-sign"><a href="#">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size:20px"></span>
           </a></li>
-        <!-- <li role="presentation" id="menudown" hidden = "hidden"><a href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="false" style="font-size:20px"></span>
-          </a></li> -->
-        <li role="presentation" id="mapping" style="margin-left:12px"><a href="#">
+        <li role="presentation" id="firstButton" style="margin-left:12px"><a href="#">
           <span class="glyphicon glyphicon-globe" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation" id="firstButton" style="margin-left:12px"><a href="#">
+        <li role="presentation" id="secondButton" style="margin-left:12px"><a href="#">
           <span class="glyphicon glyphicon-signal" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="secondButton" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="thirdButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-filter" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="thirdButton" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="fourthButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
-        <li role="presentation"><a href="#" id="fourthButton" style="margin-left:12px">
+        <li role="presentation"><a href="#" id="fifthButton" style="margin-left:12px">
           <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size:20px"></span>
         </a></li>
        </div>
@@ -41,17 +38,64 @@
          <p>Predicting Household Lead Probabilities in Minneapolis</p>
        </div>
       </ul>
-
     </div>
 
     <!-- default Bar -->
     <div class="originalBar" id="originalBar">
-      <p>Lead exposure possibilities</p>
+      <h3>Lead exposure possibilities</h3>
+      <br><br>
       <p>This map displays the probabilities of each parcel possibilities of having lead</p>
       <p>Click around the census tracts to see the probabilities of lead exposure </p>
-      <p>You can also click on the buttons at the top or the polygons on the map to explore more about lead exposure.</p>
+      <p>You can also click on and off the buttons at the top bar to explore more about lead exposure.</p>
     </div>
 
+    <!-- Sidebar -->
+    <div class="originalBar" id="firstsidebar" hidden="hidden">
+      <h3>Children's EBLL level</h3>
+      <br><br>
+      <p>This map displays the EBLL level of children under five in Minneapolis</p>
+    </div>
+    <div class="originalBar" id="secondsidebar" hidden="hidden">
+      <h3>Choropleth of Census Tract Characters</h3>
+      <br><br>
+      <p>This map displays the related census tract variables in Minneapolis</p>
+    </div>
+    <div class="originalBar" id="thirdsidebar" hidden="hidden">
+      <h3>Filter the mapping characters</h3>
+      <br><br>
+      <p>Filter the characters you are interested in to find out the relationship between lead exposure and neighborhood Characters </p>
+    </div>
+    <div class="originalBar" id="fourthsidebar" hidden="hidden">
+      <h3>Predicted Lead Exposure probability at Parcel Level</h3>
+      <br><br>
+      <p>See the probablity of having lead at parcel level </p>
+      <button class = "probbuttons" type="button" id="HighProb">
+      High Probablity Parcels
+      </button>
+      <p class = "probtext" id = "HighProbtext" hidden>
+        See the probablity of having lead at parcel level
+      </p>
+      <br><br>
+      <button class = "probbuttons" type="button" id="MedianProb">
+      Median Probablity Parcels
+      </button>
+      <p class = "probtext" id = "MedianProbtext" hidden>
+        These blue parcels indicate medium probabilities of lead
+      </p>
+      <br><br>
+      <button class = "probbuttons" type="button" id="LowProb">
+        Low Probablity Parcels
+      </button>
+      <p class = "probtext" id = "LowProbtext" hidden>
+        These light blue parcels indicate low probabilities of lead
+      </p>
+      <br><br>
+    </div>
+    <div class="originalBar" id="fifthsidebar" hidden="hidden">
+      <h3>Search for Lead Exposure probability</h3>
+      <br><br>
+      <p>Type in one place and show me the lead exposure probablity</p>
+    </div>
 
     <!-- Map -->
     <div id="map" class="map">
@@ -68,7 +112,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
-    <script src="js/Functions.js"></script>
     <script src="js/navigation.js"></script>
+    <script src="js/Functions.js"></script>
   </body>
 </html>

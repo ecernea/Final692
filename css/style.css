@@ -9,6 +9,9 @@ h3 {
     display: inline-block;
     margin: 0px;
     font-variant: small-caps;
+    font-weight:bold;
+    font-size: 35px;
+    color: white;
 }
 
 h5 {
@@ -17,72 +20,10 @@ h5 {
     vertical-align: middle;
 }
 
-
-#time-window {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 1000;
-    background-color: white;
-    padding: 0px 10px 0px 10px;
-}
-
-#modal {
-  position: absolute;
-  z-index: 10000;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,1);
-  color:deepskyblue;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 15%;
-  padding-bottom:15%;
-  padding-left:25%;
-  padding-right: 25%;
-}
-
 #intro {
   /*box-sizing: border-box;*/
   z-index: 10001;
   vertical-align: middle;
-}
-#intro > p:nth-child(1){
-  font-size:30px;
-}
-#intro > p:nth-child(2){
-  font-size:18px;
-  font-weight: lighter;
-  color:rgba(255, 255, 255, 0.7);
-  text-align: left;
-}
-
-#source {
-  font-size:15px;
-  font-weight: lighter;
-  color:rgba(255, 255, 255, 0.7);
-  text-align: left;
-  margin-top:25px;
-}
-
-.sourceA{
-  color:rgba(135, 206, 235,1);
-  text-decoration: underline;
-}
-
-#startMap {
-  z-index: 10001;
-  box-sizing: border-box;
-  font-size: 35px;
-  font-weight: lighter;
-  font-variant: small-caps;
-  position:relative;
-  border-radius: 5px;
-  border-style: solid;
-  color: rgba(0, 191, 255,0.5);
-  border: solid 2px rgba(0, 191, 255,0.5);
-  background-color: black;
-  padding: 0px 15px;
 }
 
 .originalBar {
@@ -109,15 +50,7 @@ h5 {
 .leaflet-control-zoom {
   position:absolute;
   top: 60px;
-  left: 400px;
-}
-
-body > div.originalBar > p:nth-child(1) {
-  font-size:22px;
-  font-weight: bold;
-  color:white;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  left: 1350px;
 }
 
 .map {
@@ -128,52 +61,6 @@ body > div.originalBar > p:nth-child(1) {
     top: 0;
 }
 
-#mapsIntro{
-  margin:25px;
-  text-align: center;
-  font-weight: lighter;
-  color:rgba(0, 191, 255,0.7);
-  animation: twinkle2 2s infinite;
-}
-
-#statsIntro{
-  margin:25px;
-  text-align: center;
-  font-weight: lighter;
-  left:30%;
-  top:95%;
-  color:rgba(0, 191, 255,0.7);
-  animation: twinkle3 1s infinite;
-  position:absolute;
-}
-
-}
-#indivIntro{
-  margin:25px;
-  text-align: center;
-  font-weight: lighter;
-  left:50%;
-  top:15%;
-  color:rgba(0, 191, 255,0.7);
-  animation: twinkle4 1s infinite;
-  position:absolute;
-}
-
-}
-#filterIntro{
-  margin:25px;
-  text-align: center;
-  font-weight: lighter;
-  top:30%;
-  left:20%;
-  color:rgba(0, 191, 255,0.7);
-  animation: twinkle5 1s infinite;
-  position:absolute;
-}
-@keyframes twinkle5 {
-    from {color:rgba(0, 191, 255,1)}
-    to {color: rgba(240, 248, 255,1);margin-top: 7px}
-}
 a {
     color: white;
     text-decoration: none;
@@ -183,9 +70,9 @@ a {
 .nav>li>a {
     position: relative;
     display: block;
-    padding-top: 10px;
+    padding-top: 8px;
     padding-right: 11px;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     padding-left: 11px;
 }
 
@@ -204,25 +91,23 @@ a {
   color:white;
 }
 
-#thintop {
-  position: absolute;
-  top:0px;
-  height: 20px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(0,0,0,0.5);
-  z-index: 1000;
-  padding-left: 15px;
-  color: white;
-  cursor: pointer;
-}
-
 #Title {
   position: absolute;
   top:0px;
   height: 55px;
   z-index: 1000;
   font-size: 28px;
+}
+
+.probbuttons{
+  width: 270px;
+  height: 40px;
+  border-radius: 4px;
+  border-style: solid;
+  cursor: pointer;
+  background-color: rgba(55, 94, 102, 0.4);
+  border-color: rgba(255,255,255,0.4);
+  color: white;
 }
 
 .cartodb-infowindow {

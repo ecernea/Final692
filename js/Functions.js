@@ -44,8 +44,30 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   var cartoVizId = '41b34693-185d-4912-8bc8-448f3a3b7de0';
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
 
+
   var points;
   var pointsLayer;
+  var sqlquerry = "SELECT * FROM pointsjson2";
+  // Show parcel points of different probabilities
+  $('#HighProb').on('click',function(e){
+    $('#HighProbtext').fadeToggle();
+    $('#MedianProbtext').hide();
+    $('#LowProbtext').hide();
+    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p > 0.7";
+  });
+  $('#MedianProb').on('click',function(e){
+    $('#HighProbtext').hide();
+    $('#MedianProbtext').fadeToggle();
+    $('#LowProbtext').hide();
+    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p < 0.7 and stpws_p > 0.3";
+  });
+  $('#LowProb').on('click',function(e){
+    $('#HighProbtext').hide();
+    $('#MedianProbtext').hide();
+    $('#LowProbtext').fadeToggle();
+    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p < 0.3";
+  });
+
   pointsCDB = cartodb.createLayer(map, {
     user_name: cartoUserName,
     type: 'cartodb',
@@ -54,29 +76,29 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     sublayers: [
       {
         type: 'mapnik',
-        sql: "SELECT * FROM pointsjson2",
-        cartocss: "#pointsjson2 { marker-width: 7; marker-fill: #EE4D5A; marker-fill-opacity: 0.9; marker-allow-overlap: true; marker-line-width: 1; marker-line-color: #FFFFFF; marker-line-opacity: 1; }",
+        sql: sqlquerry,
+        cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
         interactivity: 'stpws_p' // Define properties you want to be available on interaction
      }
     ]
-  })
-
-  var districts;
-  var districtsLayer;
-  var districtsCDB = cartodb.createLayer(map, layerUrl)
+  });
 
   pointsCDB.addTo(map).done(function(layer) {
     pointsLayer = layer;
     points = layer.getSubLayer(0);
-    console.log(layer.options.legend)
-    layer.setZIndex(1000)
-  })
+    // console.log(layer.options.legend);
+    layer.setZIndex(1000);
+  });
 
-  districtsCDB.addTo(map).done(function(layer) {
-    districtsLayer = layer;
-    districts = layer.getSubLayer(0);
-    layer.setZIndex(0)
-  })
+  var districts;
+  var districtsLayer;
+  var districtsCDB = cartodb.createLayer(map, layerUrl);
+
+  // districtsCDB.addTo(map).done(function(layer) {
+  //   districtsLayer = layer;
+  //   districts = layer.getSubLayer(0);
+  //   layer.setZIndex(0);
+  // });
 
   // change points:
   // points.setSQL('SELECT * FROM pointsjson2')
@@ -92,4 +114,3 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   //  }).on('error', function(err) {
   //    console.log(err);
   //  });
-
