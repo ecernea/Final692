@@ -44,31 +44,10 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   var cartoVizId = '41b34693-185d-4912-8bc8-448f3a3b7de0';
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
 
-
   var points;
   var pointsLayer;
-  var sqlquerry = "SELECT * FROM pointsjson2";
-  // Show parcel points of different probabilities
-  $('#HighProb').on('click',function(e){
-    $('#HighProbtext').fadeToggle();
-    $('#MedianProbtext').hide();
-    $('#LowProbtext').hide();
-    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p > 0.7";
-  });
-  $('#MedianProb').on('click',function(e){
-    $('#HighProbtext').hide();
-    $('#MedianProbtext').fadeToggle();
-    $('#LowProbtext').hide();
-    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p < 0.7 and stpws_p > 0.3";
-  });
-  $('#LowProb').on('click',function(e){
-    $('#HighProbtext').hide();
-    $('#MedianProbtext').hide();
-    $('#LowProbtext').fadeToggle();
-    sqlquerry = "SELECT * FROM pointsjson2 where stpws_p < 0.3";
-  });
 
-  pointsCDB = cartodb.createLayer(map, {
+  var allpoints = cartodb.createLayer(map, {
     user_name: cartoUserName,
     type: 'cartodb',
     interactivity: true,
@@ -76,19 +55,153 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     sublayers: [
       {
         type: 'mapnik',
-        sql: sqlquerry,
+        sql: "SELECT * FROM pointsjson2",
         cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
         interactivity: 'stpws_p' // Define properties you want to be available on interaction
      }
     ]
   });
 
-  pointsCDB.addTo(map).done(function(layer) {
-    pointsLayer = layer;
-    points = layer.getSubLayer(0);
-    // console.log(layer.options.legend);
-    layer.setZIndex(1000);
+  var highpoints = cartodb.createLayer(map, {
+    user_name: cartoUserName,
+    type: 'cartodb',
+    interactivity: true,
+    legends: true,
+    sublayers: [
+      {
+        type: 'mapnik',
+        sql: "SELECT * FROM pointsjson2 where stpws_p > 0.7",
+        cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+        interactivity: 'stpws_p' // Define properties you want to be available on interaction
+     }
+    ]
   });
+
+  var medianpoints = cartodb.createLayer(map, {
+    user_name: cartoUserName,
+    type: 'cartodb',
+    interactivity: true,
+    legends: true,
+    sublayers: [
+      {
+        type: 'mapnik',
+        sql: "SELECT * FROM pointsjson2 where stpws_p < 0.7 and stpws_p > 0.3",
+        cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+        interactivity: 'stpws_p' // Define properties you want to be available on interaction
+     }
+    ]
+  });
+  // medianpoints.addTo(map);
+
+  var lowpoints = cartodb.createLayer(map, {
+    user_name: cartoUserName,
+    type: 'cartodb',
+    interactivity: true,
+    legends: true,
+    sublayers: [
+      {
+        type: 'mapnik',
+        sql: "SELECT * FROM pointsjson2 where stpws_p < 0.3",
+        cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+        interactivity: 'stpws_p' // Define properties you want to be available on interaction
+     }
+    ]
+  });
+  // lowpoints.addTo(map);
+
+  // tried to change this pointsCDB into a function
+  // function selectpointlayer(sqlquerry){
+  //   cartodb.createLayer(map, {
+  //     user_name: cartoUserName,
+  //     type: 'cartodb',
+  //     interactivity: true,
+  //     legends: true,
+  //     sublayers: [
+  //       {
+  //         type: 'mapnik',
+  //         sql: sqlquerry,
+  //         cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+  //         interactivity: 'stpws_p' // Define properties you want to be available on interaction
+  //      }
+  //     ]
+  //   });
+  // }
+  //
+  // var highpoints = selectpointlayer(sqlquerryhigh);
+  // var medianpoints = selectpointlayer(sqlquerrymedian);
+  // var lowpoints = selectpointlayer(sqlquerrylow);
+
+  // pointsCDB = cartodb.createLayer(map, {
+  //   user_name: cartoUserName,
+  //   type: 'cartodb',
+  //   interactivity: true,
+  //   legends: true,
+  //   sublayers: [
+  //     {
+  //       type: 'mapnik',
+  //       sql: sqlquerry,
+  //       cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+  //       interactivity: 'stpws_p' // Define properties you want to be available on interaction
+  //    }
+  //   ]
+  // });
+
+  // pointsCDB.addTo(map).done(function(layer) {
+  //   pointsLayer = layer;
+  //   points = layer.getSubLayer(0);
+  //   // console.log(layer.options.legend);
+  //   layer.setZIndex(1000);
+  // });
+
+  // Show parcel points of different probabilities
+  $('#HighProb').on('click',function(e){
+    $('#HighProbtext').fadeToggle();
+    $('#MedianProbtext').hide();
+    $('#LowProbtext').hide();
+    // how to remove the map current layer and add the new selected points/ call the pointCDB function
+    console.log(highpoints);
+    highpoints.addTo(map).done(function(layer) {
+      pointsLayer = layer;
+      points = layer.getSubLayer(0);
+      // console.log(layer.options.legend);
+      layer.setZIndex(1000);
+    });
+  });
+  $('#MedianProb').on('click',function(e){
+    $('#HighProbtext').hide();
+    $('#MedianProbtext').fadeToggle();
+    $('#LowProbtext').hide();
+    medianpoints.addTo(map);
+  });
+  $('#LowProb').on('click',function(e){
+    $('#HighProbtext').hide();
+    $('#MedianProbtext').hide();
+    $('#LowProbtext').fadeToggle();
+    lowpoints.addTo(map);
+  });
+
+
+  // pointsCDB = cartodb.createLayer(map, {
+  //   user_name: cartoUserName,
+  //   type: 'cartodb',
+  //   interactivity: true,
+  //   legends: true,
+  //   sublayers: [
+  //     {
+  //       type: 'mapnik',
+  //       sql: sqlquerry,
+  //       cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+  //       interactivity: 'stpws_p' // Define properties you want to be available on interaction
+  //    }
+  //   ]
+  // });
+  //
+  // pointsCDB.addTo(map).done(function(layer) {
+  //   pointsLayer = layer;
+  //   points = layer.getSubLayer(0);
+  //   // console.log(layer.options.legend);
+  //   layer.setZIndex(1000);
+  // });
 
   var districts;
   var districtsLayer;
