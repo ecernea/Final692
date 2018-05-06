@@ -46,6 +46,10 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 
   var points;
   var pointsLayer;
+  var allpoints;
+  var highpoints;
+  var medianpoints;
+  var lowpoints;
 
   var allpoints = cartodb.createLayer(map, {
     user_name: cartoUserName,
@@ -61,6 +65,7 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
      }
     ]
   });
+  allpoints.addTo(map);
 
   var highpoints = cartodb.createLayer(map, {
     user_name: cartoUserName,
@@ -159,24 +164,21 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     $('#MedianProbtext').hide();
     $('#LowProbtext').hide();
     // how to remove the map current layer and add the new selected points/ call the pointCDB function
-    console.log(highpoints);
-    highpoints.addTo(map).done(function(layer) {
-      pointsLayer = layer;
-      points = layer.getSubLayer(0);
-      // console.log(layer.options.legend);
-      layer.setZIndex(1000);
-    });
+    // console.log(highpoints);
+    highpoints.addTo(map);
   });
   $('#MedianProb').on('click',function(e){
     $('#HighProbtext').hide();
     $('#MedianProbtext').fadeToggle();
     $('#LowProbtext').hide();
+    // console.log(medianpoints);
     medianpoints.addTo(map);
   });
   $('#LowProb').on('click',function(e){
     $('#HighProbtext').hide();
     $('#MedianProbtext').hide();
     $('#LowProbtext').fadeToggle();
+    // console.log(lowpoints);
     lowpoints.addTo(map);
   });
 
