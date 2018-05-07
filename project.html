@@ -81,26 +81,23 @@
       <h3>Predicted Lead Exposure probability at Parcel Level</h3>
       <br><br>
       <p>See the probablity of having lead at parcel level </p>
-      <button class = "probbuttons" type="button" id="HighProb">
-      High Probablity Parcels
-      </button>
-      <p class = "probtext" id = "HighProbtext" hidden>
-        See the probablity of having lead at parcel level
-      </p>
-      <br><br>
-      <button class = "probbuttons" type="button" id="MedianProb">
-      Median Probablity Parcels
-      </button>
-      <p class = "probtext" id = "MedianProbtext" hidden>
-        These blue parcels indicate medium probabilities of lead
-      </p>
-      <br><br>
-      <button class = "probbuttons" type="button" id="LowProb">
-        Low Probablity Parcels
-      </button>
-      <p class = "probtext" id = "LowProbtext" hidden>
-        These light blue parcels indicate low probabilities of lead
-      </p>
+      <aside class="layers">
+     <h2>Layers</h2>
+     <ul>
+       <li class="layer">
+           <input type="checkbox" id="HighProb" name="layer">
+           <label for="High Probability">High Probabilty</label>
+       </li>
+       <li class="layer">
+           <input type="checkbox" id="MedProb" name="layer">
+           <label for="Medium Probability">Medium Probabilty</label>
+       </li>
+       <li class="layer">
+           <input type="checkbox" id="LowProb" name="layer">
+           <label for="Low Probability">Low Probabilty</label>
+       </li>
+     </ul>
+     </aside>
       <br><br>
     </div>
     <div class="originalBar" id="fifthsidebar" hidden="hidden">

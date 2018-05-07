@@ -396,21 +396,52 @@ cartodb.createLayer(
     console.log("error: " + err);
 });
 
-$("#HighProb").on('click', function(){
-  cartodb.createLayer(
-      map,
-      layerUrl1,
-      {
-          https: true,
-          legends: true,
-          cartodb_logo:true,
-          layerIndex:1
-      },function(layer){
-        layer.createSubLayer({
-          sql:'SELECT * FROM pointsjson2 where stpws_p > 0.8',
-          cartocss: '#layer { marker-fill: red; }'
-        });
-      }).addTo(map);
+var layers = {
+          'High Probabilty': {
+            sql:'SELECT * FROM pointsjson2 where stpws_p > 0.7',
+            cartocss: '#layer { marker-fill: red; }'
+          },
+          'Medium Probabilty': {
+            sql: 'SELECT * FROM pointsjson2 where stpws_p < 0.7 and stpws_p > 0.3',
+            cartocss: '#layer { marker-fill: yellow; }'
+          },
+          'Low Probabilty': {
+            sql: 'SELECT * FROM pointsjson2 where stpws_p < 0.3',
+            cartocss: '#layer { marker-fill: blue; }'
+          }
+        };
+        cartodb.createLayer(map,layerUrl1,{
+                   sublayers: []
+                 })
+                 .addTo(map)
+                 .done(function(layer){
+                   // When the layers inputs change fire this
+                   $("input[name='layer']").change(function(){
+
+                     // Clear the sublayers
+                     layer.getSubLayers().forEach(function(sublayer){sublayer.remove();});
+
+                     // For every check activated, add a sublayer
+                     $.each($("input[name='layer']:checked"), function(){
+                         layer.createSubLayer(layers[$(this).attr("id")]);
+                     });
+                   });
+
+// $("#HighProb").on('click', function(){
+//   cartodb.createLayer(
+//       map,
+//       layerUrl1,
+//       {
+//           https: true,
+//           legends: true,
+//           cartodb_logo:true,
+//           layerIndex:1
+//       },function(layer){
+//         layer.createSubLayer({
+//           sql:'SELECT * FROM pointsjson2 where stpws_p > 0.8',
+//           cartocss: '#layer { marker-fill: red; }'
+//         });
+//       }).addTo(map);
 
 
 // / 'SELECT * FROM pointsjson2 where stpws_p > 0.8' }]
