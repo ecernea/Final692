@@ -111,5 +111,9 @@ a {
 }
 
 .cartodb-infowindow {
-  background-color: white;
+  /* background-color: CLEAR; */
+}
+.cartodb-legend choropleth{
+  width: 270px;
+  height: 40px;  
 }
