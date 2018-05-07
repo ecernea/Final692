@@ -290,6 +290,9 @@ cartodb.createLayer(
         sublayer0.setInteraction(false);
         sublayer2.setInteraction(false);
         sublayer3.setInteraction(false);
+        $('div#sublayer0.cartodb-popup.v2').remove();
+        $('div#sublayer2.cartodb-popup.v2').remove();
+        $('div#sublayer3.cartodb-popup.v2').remove();
         cdb.vis.Vis.addInfowindow(
           map, sublayer1, ["vacancy","educati", "poverty","medianh"],
           {
@@ -304,19 +307,24 @@ cartodb.createLayer(
     // turn on layer off, turn off layer on
         sublayer0.show();
         sublayer1.hide();
+        sublayer2.hide();
+        sublayer3.hide();
         $('#map').append(medianIncLegend.render().el);
         $(".legend-title").replaceWith("HS Degree or Above Quintile Breaks");
         $(".colors").replaceWith("<div class='quartile' style='background-color:#eff3ff'></div><div class='quartile' style='background-color:#bdd7e7'></div><div class='quartile' style='background-color:#6baed6'></div><div class='quartile' style='background-color:#3182bd'></div><div class='quartile' style='background-color:#08519c'></div>");
         sublayer0.setInteractivity("educati");
         sublayer1.setInteraction(false);
         sublayer0.setInteraction(true);
+        $('div#sublayer1.cartodb-popup.v2').remove();
+        $('div#sublayer2.cartodb-popup.v2').remove();
+        $('div#sublayer3.cartodb-popup.v2').remove();
         cdb.vis.Vis.addInfowindow(
           map, sublayer0, ["vacancy","educati", "poverty","medianh"],
           {
-             infowindowTemplate: $('#iw_template_sublayer1').html()
+             infowindowTemplate: $('#iw_template_sublayer0').html()
           });
-          sublayer0.on('featureClick',function(e,latlng,pos,data){
-          $('.cartodb-infowindow #sublayer0' ).css('visibility', 'hidden');
+          sublayer1.on('featureClick',function(e,latlng,pos,data){
+          $('.cartodb-infowindow #sublayer1' ).css('visibility', 'hidden');
           return false;
     });
       });
@@ -334,10 +342,13 @@ cartodb.createLayer(
           sublayer0.setInteraction(false);
           sublayer2.setInteraction(true);
           sublayer3.setInteraction(false);
+          $('div#sublayer0.cartodb-popup.v2').remove();
+          $('div#sublayer1.cartodb-popup.v2').remove();
+          $('div#sublayer3.cartodb-popup.v2').remove();
           cdb.vis.Vis.addInfowindow(
             map, sublayer2, ["vacancy","educati", "poverty","medianh"],
             {
-               infowindowTemplate: $('#iw_template_sublayer1').html()
+               infowindowTemplate: $('#iw_template_sublayer2').html()
             });
             sublayer0.on('featureClick',function(e,latlng,pos,data){
             $('.cartodb-infowindow #sublayer0' ).css('visibility', 'hidden');
@@ -358,11 +369,13 @@ cartodb.createLayer(
             sublayer0.setInteraction(false);
             sublayer2.setInteraction(false);
             sublayer3.setInteraction(true);
-            $(".DB-infowindow-list.js-content").hide();
+            $('div#sublayer1.cartodb-popup.v2').remove();
+            $('div#sublayer2.cartodb-popup.v2').remove();
+            $('div#sublayer3.cartodb-popup.v2').remove();
             cdb.vis.Vis.addInfowindow(
               map, sublayer3, ["vacancy","educati", "poverty","medianh"],
               {
-                 infowindowTemplate: $('#iw_template_sublayer1').html()
+                 infowindowTemplate: $('#iw_template_sublayer3').html()
               });
               sublayer0.on('featureClick',function(e,latlng,pos,data){
               $('.cartodb-infowindow #sublayer0' ).css('visibility', 'hidden');
@@ -373,8 +386,6 @@ cartodb.createLayer(
 .error(function(err) { // when error, do this
     console.log("error: " + err);
 });
-
-//$('#map').append(aucLegend.render().el);
 
   // change points:
   // points.setSQL('SELECT * FROM pointsjson2')
