@@ -42,7 +42,9 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 
   var cartoUserName = 'echoxiaowu1993';
   var cartoVizId = '8b7b846f-6556-4c59-91cf-468e390daeee';
+  var cartoVizId1 = '358592c6-3aa2-465a-9682-0ba1fddae5ef';
   var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
+  var layerUrl1 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId1+'/viz.json';
 
   var points;
   var pointsLayer;
@@ -114,49 +116,49 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   // });
   // // lowpoints.addTo(map);
   //
-  // // tried to change this pointsCDB into a function
-  // // function selectpointlayer(sqlquerry){
-  // //   cartodb.createLayer(map, {
-  // //     user_name: cartoUserName,
-  // //     type: 'cartodb',
-  // //     interactivity: true,
-  // //     legends: true,
-  // //     sublayers: [
-  // //       {
-  // //         type: 'mapnik',
-  // //         sql: sqlquerry,
-  // //         cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
-  // //         interactivity: 'stpws_p' // Define properties you want to be available on interaction
-  // //      }
-  // //     ]
-  // //   });
-  // // }
-  // //
-  // // var highpoints = selectpointlayer(sqlquerryhigh);
-  // // var medianpoints = selectpointlayer(sqlquerrymedian);
-  // // var lowpoints = selectpointlayer(sqlquerrylow);
+  // tried to change this pointsCDB into a function
+  // function selectpointlayer(sqlquerry){
+  //   cartodb.createLayer(map, {
+  //     user_name: cartoUserName,
+  //     type: 'cartodb',
+  //     interactivity: true,
+  //     legends: true,
+  //     sublayers: [
+  //       {
+  //         type: 'mapnik',
+  //         sql: sqlquerry,
+  //         cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+  //         interactivity: 'stpws_p' // Define properties you want to be available on interaction
+  //      }
+  //     ]
+  //   });
+  // }
   //
-  // // pointsCDB = cartodb.createLayer(map, {
-  // //   user_name: cartoUserName,
-  // //   type: 'cartodb',
-  // //   interactivity: true,
-  // //   legends: true,
-  // //   sublayers: [
-  // //     {
-  // //       type: 'mapnik',
-  // //       sql: sqlquerry,
-  // //       cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
-  // //       interactivity: 'stpws_p' // Define properties you want to be available on interaction
-  // //    }
-  // //   ]
-  // // });
+  // var highpoints = selectpointlayer(sqlquerryhigh);
+  // var medianpoints = selectpointlayer(sqlquerrymedian);
+  // var lowpoints = selectpointlayer(sqlquerrylow);
   //
-  // // pointsCDB.addTo(map).done(function(layer) {
-  // //   pointsLayer = layer;
-  // //   points = layer.getSubLayer(0);
-  // //   // console.log(layer.options.legend);
-  // //   layer.setZIndex(1000);
-  // // });
+  // pointsCDB = cartodb.createLayer(map, {
+  //   user_name: cartoUserName,
+  //   type: 'cartodb',
+  //   interactivity: true,
+  //   legends: true,
+  //   sublayers: [
+  //     {
+  //       type: 'mapnik',
+  //       sql: sqlquerry,
+  //       cartocss: "#pointsjson2 {   marker-width: 8; marker-fill: ramp([stpws_p], (#d1eeea, #96d0d1, #68abb8, #45829b, #2a5674), quantiles); marker-fill-opacity: 1; marker-allow-overlap: true;marker-line-width: 1;marker-line-color: #ffffff;marker-line-opacity: 0.8; }",
+  //       interactivity: 'stpws_p' // Define properties you want to be available on interaction
+  //    }
+  //   ]
+  // });
+  //
+  // pointsCDB.addTo(map).done(function(layer) {
+  //   pointsLayer = layer;
+  //   points = layer.getSubLayer(0);
+  //   // console.log(layer.options.legend);
+  //   layer.setZIndex(1000);
+  // });
   //
   // // Show parcel points of different probabilities
   // $('#HighProb').on('click',function(e){
@@ -214,30 +216,30 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   //   districts = layer.getSubLayer(0);
   //   layer.setZIndex(0);
   // });
-  //
+
   // var map = L.map('map', {
   //           center: [39.8282,-98.5795],
   //           zoom: 4
   //          });
 
-  var vacancyLegend = new cdb.geo.ui.Legend.Choropleth({
-    title: "Number of Vacant Homes Quintile Breaks",
-    left:  "Bottom 20%",
-    right: "Top 20%",
-    colors: [ "#ffc6c4", "#ee919b", "#cc607d", "#9e3963", "#672044"]
-  });
-  var educationLegend = new cdb.geo.ui.Legend.Choropleth({
-    title: "HS Degree or Above Quintile Breaks",
-    left:  "Bottom 20%",
-    right: "Top 20%",
-    colors: [ "#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
-  });
-  var povertyLegend = new cdb.geo.ui.Legend.Choropleth({
-    title: "Number of Familes in Poverty Quintile Breaks",
-    left:  "Bottom 20%",
-    right: "Top 20%",
-    colors: [ "#f7f7f7", "#cccccc", "#969696", "#636363", "#252525"]
-  });
+  // var vacancyLegend = new cdb.geo.ui.Legend.Choropleth({
+  //   title: "Number of Vacant Homes Quintile Breaks",
+  //   left:  "Bottom 20%",
+  //   right: "Top 20%",
+  //   colors: [ "#ffc6c4", "#ee919b", "#cc607d", "#9e3963", "#672044"]
+  // });
+  // var educationLegend = new cdb.geo.ui.Legend.Choropleth({
+  //   title: "HS Degree or Above Quintile Breaks",
+  //   left:  "Bottom 20%",
+  //   right: "Top 20%",
+  //   colors: [ "#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+  // });
+  // var povertyLegend = new cdb.geo.ui.Legend.Choropleth({
+  //   title: "Number of Familes in Poverty Quintile Breaks",
+  //   left:  "Bottom 20%",
+  //   right: "Top 20%",
+  //   colors: [ "#f7f7f7", "#cccccc", "#969696", "#636363", "#252525"]
+  // });
   var medianIncLegend = new cdb.geo.ui.Legend.Choropleth({
     title: "Median Income Quintile Breaks",
     left:  "Bottom 20%",
@@ -260,7 +262,7 @@ cartodb.createLayer(
         https: true,
         legends: true,
         cartodb_logo:true,
-        layerIndex:1
+        layerIndex:1,
     })
 .addTo(map)
 .done(function(layer) { // when successful, do this stuff
@@ -269,12 +271,15 @@ cartodb.createLayer(
     var sublayer1 = layer.getSubLayer(1);
     var sublayer2 = layer.getSubLayer(2);
     var sublayer3 = layer.getSubLayer(3);
+    var sublayer4 = layer.getSubLayer(4);
 
     // hide sublayer1
     sublayer0.hide();
     sublayer1.hide();
     sublayer2.hide();
     sublayer3.hide();
+    sublayer4.hide();
+
 
     $("#load_3").on('click', function() {
     // turn on layer off, turn off layer on
@@ -282,6 +287,7 @@ cartodb.createLayer(
         sublayer1.show();
         sublayer2.hide();
         sublayer3.hide();
+        sublayer4.hide();
         $('#map').append(medianIncLegend.render().el);
         $('.legend-title').replaceWith("Median Income Quintile Breaks");
         $(".colors").replaceWith("<div class='quartile' style='background-color:#ffffcc'></div><div class='quartile' style='background-color:#c2e699'></div><div class='quartile' style='background-color:#78c679'></div><div class='quartile' style='background-color:#31a354'></div><div class='quartile' style='background-color:#006837'></div>");
@@ -309,6 +315,7 @@ cartodb.createLayer(
         sublayer1.hide();
         sublayer2.hide();
         sublayer3.hide();
+        sublayer4.hide();
         $('#map').append(medianIncLegend.render().el);
         $(".legend-title").replaceWith("HS Degree or Above Quintile Breaks");
         $(".colors").replaceWith("<div class='quartile' style='background-color:#eff3ff'></div><div class='quartile' style='background-color:#bdd7e7'></div><div class='quartile' style='background-color:#6baed6'></div><div class='quartile' style='background-color:#3182bd'></div><div class='quartile' style='background-color:#08519c'></div>");
@@ -334,6 +341,7 @@ cartodb.createLayer(
           sublayer1.hide();
           sublayer2.show();
           sublayer3.hide();
+          sublayer4.hide();
           $('#map').append(medianIncLegend.render().el);
           $(".legend-title").replaceWith("Number of Familes In Poverty Quintile Breaks");
           $(".colors").replaceWith("<div class='quartile' style='background-color:#f7f7f7'></div><div class='quartile' style='background-color:#cccccc'></div><div class='quartile' style='background-color:#969696'></div><div class='quartile' style='background-color:#636363'></div><div class='quartile' style='background-color:#252525'></div>");
@@ -382,11 +390,30 @@ cartodb.createLayer(
               return false;
         });
           });
+
 })
 .error(function(err) { // when error, do this
     console.log("error: " + err);
 });
 
+$("#HighProb").on('click', function(){
+  cartodb.createLayer(
+      map,
+      layerUrl1,
+      {
+          https: true,
+          legends: true,
+          cartodb_logo:true,
+          layerIndex:1
+      },function(layer){
+        layer.createSubLayer({
+          sql:'SELECT * FROM pointsjson2 where stpws_p > 0.8',
+          cartocss: '#layer { marker-fill: red; }'
+        });
+      }).addTo(map);
+
+
+// / 'SELECT * FROM pointsjson2 where stpws_p > 0.8' }]
   // change points:
   // points.setSQL('SELECT * FROM pointsjson2')
   // points.setCartoCSS('')
@@ -400,4 +427,4 @@ cartodb.createLayer(
   //    layer.addTo(map);
   //  }).on('error', function(err) {
   //    console.log(err);
-  //  });
+});
