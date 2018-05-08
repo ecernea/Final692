@@ -110,6 +110,10 @@ var sublayer3;
   $("#EBLL").on('click',function(){
     tracts.show();
     tracts1.hide();
+    sublayer0.hide();
+    sublayer1.hide();
+    sublayer2.hide();
+    sublayer3.hide();
     tracts.setInteractivity("pctebllct");
     tracts.setInteraction(true);
     cdb.vis.Vis.addInfowindow(
@@ -124,21 +128,42 @@ var sublayer3;
 $("#EBLL1").on('click', function(){
   tracts.show();
   tracts1.show();
+  sublayer0.hide();
+  sublayer1.hide();
+  sublayer2.hide();
+  sublayer3.hide();
   tracts1.setSQL("SELECT * from minleadtracts where pctebllct = 'No significant difference'");
   tracts1.setCartoCSS('#layer { polygon-fill: #5F4690; polygon-opacity: 0;} #layer::outline { line-width: 1; line-color: #00FF7F; line-opacity: 1; }');
 });
 $("#EBLL2").on('click', function(){
   tracts.show();
   tracts1.show();
+  sublayer0.hide();
+  sublayer1.hide();
+  sublayer2.hide();
+  sublayer3.hide();
   tracts1.setSQL("SELECT * from minleadtracts where pctebllct = 'Significantly higher (1-2 times)'");
   tracts1.setCartoCSS('#layer { polygon-fill: #5F4690; polygon-opacity: 0;} #layer::outline { line-width: 1; line-color: #FFFF00; line-opacity: 1; }');
 });
 $("#EBLL3").on('click', function(){
   tracts.show();
   tracts1.show();
+  sublayer0.hide();
+  sublayer1.hide();
+  sublayer2.hide();
+  sublayer3.hide();
   tracts1.setSQL("SELECT * from minleadtracts where pctebllct = 'Significantly higher (3+ times)'");
   tracts1.setCartoCSS('#layer { polygon-fill: #5F4690; polygon-opacity: 0;} #layer::outline { line-width: 1; line-color: #FF0000; line-opacity: 1; }');
 });
+$("#EBLL4").on('click', function(){
+  tracts.hide();
+  tracts1.hide();
+  sublayer0.hide();
+  sublayer1.hide();
+  sublayer2.hide();
+  sublayer3.hide();
+  $('div#tracts.cartodb-popup.v2').remove();
+  });
 //   });
 
   var medianIncLegend = new cdb.geo.ui.Legend.Choropleth({
@@ -189,6 +214,7 @@ cartodb.createLayer(
         sublayer2.hide();
         sublayer3.hide();
         tracts.hide();
+        tracts1.hide();
         $('#map').append(medianIncLegend.render().el);
         $('.legend-title').replaceWith("Median Income Quintile Breaks");
         $(".colors").replaceWith("<div class='quartile' style='background-color:#ffffcc'></div><div class='quartile' style='background-color:#c2e699'></div><div class='quartile' style='background-color:#78c679'></div><div class='quartile' style='background-color:#31a354'></div><div class='quartile' style='background-color:#006837'></div>");
@@ -200,6 +226,7 @@ cartodb.createLayer(
         $('div#sublayer0.cartodb-popup.v2').remove();
         $('div#sublayer2.cartodb-popup.v2').remove();
         $('div#sublayer3.cartodb-popup.v2').remove();
+        $('div#tracts.cartodb-popup.v2').remove();
         cdb.vis.Vis.addInfowindow(
           map, sublayer1, ["vacancy","educati", "poverty","medianh"],
           {
@@ -217,6 +244,7 @@ cartodb.createLayer(
         sublayer2.hide();
         sublayer3.hide();
         tracts.hide();
+        tracts1.hide();
         $('#map').append(medianIncLegend.render().el);
         $(".legend-title").replaceWith("HS Degree or Above Quintile Breaks");
         $(".colors").replaceWith("<div class='quartile' style='background-color:#eff3ff'></div><div class='quartile' style='background-color:#bdd7e7'></div><div class='quartile' style='background-color:#6baed6'></div><div class='quartile' style='background-color:#3182bd'></div><div class='quartile' style='background-color:#08519c'></div>");
@@ -226,6 +254,7 @@ cartodb.createLayer(
         $('div#sublayer1.cartodb-popup.v2').remove();
         $('div#sublayer2.cartodb-popup.v2').remove();
         $('div#sublayer3.cartodb-popup.v2').remove();
+        $('div#tracts.cartodb-popup.v2').remove();
         cdb.vis.Vis.addInfowindow(
           map, sublayer0, ["vacancy","educati", "poverty","medianh"],
           {
@@ -243,6 +272,7 @@ cartodb.createLayer(
           sublayer2.show();
           sublayer3.hide();
           tracts.hide();
+          tracts1.hide();
           $('#map').append(medianIncLegend.render().el);
           $(".legend-title").replaceWith("Number of Familes In Poverty Quintile Breaks");
           $(".colors").replaceWith("<div class='quartile' style='background-color:#f7f7f7'></div><div class='quartile' style='background-color:#cccccc'></div><div class='quartile' style='background-color:#969696'></div><div class='quartile' style='background-color:#636363'></div><div class='quartile' style='background-color:#252525'></div>");
@@ -254,6 +284,7 @@ cartodb.createLayer(
           $('div#sublayer0.cartodb-popup.v2').remove();
           $('div#sublayer1.cartodb-popup.v2').remove();
           $('div#sublayer3.cartodb-popup.v2').remove();
+          $('div#tracts.cartodb-popup.v2').remove();
           cdb.vis.Vis.addInfowindow(
             map, sublayer2, ["vacancy","educati", "poverty","medianh"],
             {
@@ -271,6 +302,7 @@ cartodb.createLayer(
           sublayer2.hide();
           sublayer3.show();
           tracts.hide();
+          tracts1.hide();
             $('#map').append(medianIncLegend.render().el);
             $(".legend-title").replaceWith("Number of Vacant Homes Quintile Breaks");
             $(".colors").replaceWith("<div class='quartile' style='background-color:#ffc6c4'></div><div class='quartile' style='background-color:#ee919b'></div><div class='quartile' style='background-color:#cc607d'></div><div class='quartile' style='background-color:#9e3963'></div><div class='quartile' style='background-color:#672044'></div>");
@@ -282,6 +314,7 @@ cartodb.createLayer(
             $('div#sublayer1.cartodb-popup.v2').remove();
             $('div#sublayer2.cartodb-popup.v2').remove();
             $('div#sublayer3.cartodb-popup.v2').remove();
+            $('div#tracts.cartodb-popup.v2').remove();
             cdb.vis.Vis.addInfowindow(
               map, sublayer3, ["vacancy","educati", "poverty","medianh"],
               {
@@ -297,6 +330,20 @@ cartodb.createLayer(
 .error(function(err) { // when error, do this
     console.log("error: " + err);
 });
+$("#load_7").on('click', function(){
+  tracts.hide();
+  tracts1.hide();
+  sublayer0.hide();
+  sublayer1.hide();
+  sublayer2.hide();
+  sublayer3.hide();
+  $('div#tracts.cartodb-popup.v2').remove();
+  $('div#sublayer0.cartodb-popup.v2').remove();
+  $('div#sublayer1.cartodb-popup.v2').remove();
+  $('div#sublayer2.cartodb-popup.v2').remove();
+  $('div#sublayer3.cartodb-popup.v2').remove();
+  $('div').removeClass("cartodb-legend choropleth");
+  });
 $("#AllProb").on('click',function(){
   points.show();
   points.setSQL('SELECT * from pointsjson2');
@@ -316,6 +363,11 @@ $("#LowProb").on('click',function(){
   points.show();
   points.setSQL('SELECT * from pointsjson2 where stpws_p < .3');
   points.setCartoCSS("#pointsjson2 {marker-width: 8; marker-fill: 'blue'; marker-fill-opacity: 1; marker-allow-overlap: true; marker-line-width: 1; marker-line-color: #ffffff; marker-line-opacity: 1;}");
+});
+$("#HidePoints").on('click',function(){
+  points.hide();
+  // points.setSQL('SELECT * from pointsjson2 where stpws_p < .3');
+  // points.setCartoCSS("#pointsjson2 {marker-width: 8; marker-fill: 'blue'; marker-fill-opacity: 1; marker-allow-overlap: true; marker-line-width: 1; marker-line-color: #ffffff; marker-line-opacity: 1;}");
 });
 //
 // // var layers = {
