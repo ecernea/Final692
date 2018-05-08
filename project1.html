@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style1.css" />
   </head>
   <body>
     <!-- topbar -->
@@ -81,20 +81,21 @@
       <h3>Predicted Lead Exposure probability at Parcel Level</h3>
       <br><br>
       <p>See the probablity of having lead at parcel level </p>
+      <button class = "probbuttons" type="button" id="AllProb">
+      Show all parcels with predictions
+      </button>
       <button class = "probbuttons" type="button" id="HighProb">
       High Probablity Parcels
       </button>
       <p class = "probtext" id = "HighProbtext" hidden>
         See the probablity of having lead at parcel level
       </p>
-      <br><br>
       <button class = "probbuttons" type="button" id="MedianProb">
       Median Probablity Parcels
       </button>
       <p class = "probtext" id = "MedianProbtext" hidden>
         These blue parcels indicate medium probabilities of lead
       </p>
-      <br><br>
       <button class = "probbuttons" type="button" id="LowProb">
         Low Probablity Parcels
       </button>
@@ -181,6 +182,6 @@
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/Functions.js"></script>
+    <script src="js/Functions1.js"></script>
   </body>
 </html>
