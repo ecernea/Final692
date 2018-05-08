@@ -65,7 +65,19 @@
     <div class="originalBar" id="firstsidebar" hidden="hidden">
       <h3>Children's EBLL level</h3>
       <br><br>
-      <p>This map displays the EBLL level of children under five in Minneapolis</p>
+      <p>This map displays the Elevated Blood Lead Level (EBLL) of children under five in Minneapolis</p>
+      <button class = "probbuttons" type="button" id="EBLL">
+      Show All EBLL Tracts
+      </button>
+      <button class = "probbuttons" type="button" id="EBLL1">
+      Highlight Low EBLL Tracts
+      </button>
+      <button class = "probbuttons" type="button" id="EBLL2">
+      Highlight Midrange EBLL Tracts
+      </button>
+      <button class = "probbuttons" type="button" id="EBLL3">
+      Highlight High EBLL Tracts
+      </button>
     </div>
     <div class="originalBar" id="secondsidebar" hidden="hidden">
       <h3>Choropleth of Census Tract Characters</h3>
@@ -173,7 +185,16 @@
     <div class="cartodb-popup-tip-container"></div>
   </div>
 </script>
-
+<script type="infowindow/html" id="iw_template_tracts">
+  <div class="cartodb-popup v2" id="tracts">
+    <a href="#close" class="cartodb-popup-close-button close">x</a>
+    <div class="cartodb-popup-content-wrapper">
+      <div class="cartodb-popup-content">
+        <p>Lead Level Category: {{pctebllct}}</p>
+    </div>
+    <div class="cartodb-popup-tip-container"></div>
+  </div>
+</script>
     <!-- Javascript Imports -->
     <script src="import/chroma.js"></script>
     <script src="import/underscore.js"></script>
